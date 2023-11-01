@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dancing+Script">
+<div class="container">
+    <div class="card" *ngIf="specificArt">
+        <div class="container-fliud">
+            <div class="wrapper row">
+                <div class="preview col-md-6">
+                    <div class="preview-pic tab-content">
+                        <div class="tab-pane active" id="pic-1"><img
+                                src="https://www.artic.edu/iiif/2/{{specificArt.image_id}}/full/843,/0/default.jpg" />
+                        </div>
+                    </div>
+                </div>
+                <div class="details col-md-6">
+                    <h1 class="product-title">{{specificArt.title}}</h1>
+                    <h3 class="product-title" style="color:rgb(92, 43, 34);"><svg xmlns="http://www.w3.org/2000/svg"
+                            width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                            <path
+                                d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
+                        </svg>Author: {{specificArt.artist_title}}</h3>
+                    <div class="rating">
+                        <div class="stars">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                        <span class="review-no"><b>Art Type: </b>{{specificArt.medium_display}}</span>
+                    </div>
+                    <p class="product-description"><b>Exhibition History: </b>{{specificArt.exhibition_history |
+                        slice:0:300}}</p>
+                    <h4 class="price">Place of Origin: <span>{{specificArt.place_of_origin}}</span></h4>
+                    <p class="vote"><strong>Category Title: </strong> {{specificArt.category_titles}}</p>
+                    <h5 class="sizes">Dimensions in cm and in:
+                        <span class="size" data-toggle="tooltip"
+                            title="small">{{specificArt.dimensions_detail[0].width_cm}}</span>
+                        <span class="size" data-toggle="tooltip"
+                            title="medium">{{specificArt.dimensions_detail[0].height_cm}}</span>
+                        <span class="size" data-toggle="tooltip"
+                            title="large">{{specificArt.dimensions_detail[0].width_in}}</span>
+                        <span class="size" data-toggle="tooltip"
+                            title="xtra large">{{specificArt.dimensions_detail[0].height_in}}</span>
+                    </h5>
+                    <div class="action">
+                        <button class="add-to-cart btn btn-default" type="button" routerLink="/display">Back to Art
+                            Gallery</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

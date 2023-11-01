@@ -1,0 +1,14 @@
+<figure class="artworks__item" id="art.data.id">
+    <img class="artworks__item-img" src="{{art.data.thumbnail.lqip}}" alt="Image">
+    <figcaption class="artworks__item-caption">
+      <h2 class="artworks__item-title">{{art.data.title}}</h2>
+      <p class="artworks__item-author">Max Beckmann
+German, 1884-1950</p>
+      <div class="artworks__item-interact">
+        <button class="artworks__item-btn like-btn">
+          <img class="like-img hidden" src="https://fmanimashaun.github.io/artwork-listing-app/js/../img/like.svg" alt="like">
+          <img class="like-img" src="https://fmanimashaun.github.io/artwork-listing-app/js/../img/unlike.svg" alt="like">
+        </button>
+      </div>
+    </figcaption>
+ </figure>

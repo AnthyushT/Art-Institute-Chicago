@@ -1,0 +1,44 @@
+body {
+    background-color: rgba(255, 102, 102, 0.5); 
+    font-family: 'Dancing Script', cursive; 
+    /* min-height: 100vh;  */
+    margin: 0;  
+}
+
+.conntainer{
+    background-color: rgba(255, 102, 102, 0.5);
+}
+.welcome-message {
+    font-size: 2em;
+    color: #333;
+}
+
+.welcome-image {
+    max-width: 30%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 10px solid #333;
+    border-radius: 15px;
+    box-shadow: 10px 10px 5px grey;
+}
+
+.about-us {
+    font-size: 1.5em;
+    color: #666;
+}
+
+
+/* Responsive styles */
+@media screen and (max-width: 600px) {
+  .welcome-image {
+      max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 300px) {
+    body {
+        min-height: 100%;
+    }
+  }

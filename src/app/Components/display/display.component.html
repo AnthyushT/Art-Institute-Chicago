@@ -1,0 +1,70 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dancing+Script">
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="./assets/logo.svg" alt="" width="70" height="50">
+      </a>
+      <a class="navbar-brand primary" href="#">Art Institute Chicago</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item ms-auto">
+            <a class="btn btn-outline-dark me-4" aria-current="page" routerLink="/">Home</a>
+          </li>
+          <li class="nav-item ms-auto">
+            <a class="btn btn-outline-dark me-4" aria-current="page" routerLink="/display">Art Gallery</a>
+          </li>
+          <li class="nav-item ms-auto">
+            <a class="btn btn-outline-danger me-4" aria-current="page" routerLink="/favourites">Favorites</a>
+          </li>
+        </ul>
+        <form class="d-flex" [formGroup]="newForm" (ngSubmit)="filterArt()">
+          <input class="form-control me-2" type="search" placeholder="Search Art Title" aria-label="Search"
+            formControlName="title" (input)="filterArt()">
+          <button class="btn btn-outline-success" type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="artworks__wrapper">
+      <figure *ngFor="let art of filterArts | paginate: { itemsPerPage: ItemsPerPage, currentPage: p}"
+        class="artworks__item" id="art.id">
+        <img class="artworks__item-img" src="https://www.artic.edu/iiif/2/{{art.image_id}}/full/843,/0/default.jpg"
+          alt="Image">
+        <figcaption class="artworks__item-caption">
+          <h2 class="artworks__item-title">{{art.title | slice: 0:40}}</h2>
+          <h3 class="artworks__item-author"><b>Department: </b> {{art.department_title}}</h3>
+          <div class="artworks__item-interact">
+            <button class="artworks__item-btn btn btn-outline-primary" [routerLink]="['/display',art.id]">
+              Explore
+            </button>
+            <button type="button" class="artworks__item-btn like-btn btn btn-outline-danger" [class.filled]="isFavorite(art.id)" (click)="saveData(art.id)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart"
+                viewBox="0 0 16 16">
+                <path
+                  d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z">
+                </path>
+              </svg>
+              Like
+            </button>
+          </div>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="mt-8 py-5 d-block text-center">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</body>
