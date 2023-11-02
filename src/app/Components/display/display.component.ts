@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MasterService } from '../../service/master.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-display',
@@ -8,9 +9,12 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./display.component.css']
 })
 export class DisplayComponent implements OnInit {
+  limit : number = 6;
+  page :number =  1;
   p: number = 1;
   ItemsPerPage: number = 6;
   allArts: any;
+  total : number = 0;
   filterArts: any;
   searchInput = "";
   newForm: FormGroup = new FormGroup({
@@ -26,9 +30,9 @@ export class DisplayComponent implements OnInit {
   }
   
 
-  constructor(private _masterService: MasterService) { }
+  constructor(private _masterService: MasterService, private router: Router) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
     this.getArtList();
   }
 
@@ -37,6 +41,7 @@ export class DisplayComponent implements OnInit {
       console.warn("data", value);
       this.filterArts = value.data;
       this.allArts = value.data;
+      this.total = value.pagination.total_pages;
     })
   }
 
@@ -53,6 +58,19 @@ export class DisplayComponent implements OnInit {
     return favorites.includes(id);
   }
   
+  shareArt(id: number) {
+    if(navigator.share){
+      navigator.share({
+        title: 'Check out this art!',
+        url: this.router.createUrlTree(['/display', id]).toString()
+      }).then(() => {
+        console.log('Thanks for sharing!');
+      })
+      .catch(console.error);
+    } else {
+      console.log('Share not supported on this browser, do it manually.');
+    }
+  }
 
 }
 
