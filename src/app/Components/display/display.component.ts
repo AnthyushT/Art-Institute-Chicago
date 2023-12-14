@@ -58,6 +58,7 @@ export class DisplayComponent implements OnInit {
     return favorites.includes(id);
   }
   
+  //used for sharing the art
   shareArt(id: number) {
     if(navigator.share){
       navigator.share({
